@@ -1,0 +1,37 @@
+
+
+version: '3.8'
+
+services:
+  hahncargosim:
+    build:
+      context: ./HahnCargoSim
+    ports:
+      - "1222:80"
+    networks:
+      - OurNetwoks-App
+
+  hahncargosimback:
+    build:
+      context: ./BackendHahnCargoSim
+    ports:
+      - "1333:8080"
+    depends_on:
+      - hahncargosim
+    networks:
+      - OurNetwoks-App
+
+  hahncargosimfront:
+    build:
+      context: ./FrontendHahnCargoSim
+    ports:
+      - "4200:80"
+    depends_on:
+      - hahncargosimback
+    networks:
+      - OurNetwoks-App
+
+
+networks:
+  OurNetwoks-App:
+    driver: bridge
