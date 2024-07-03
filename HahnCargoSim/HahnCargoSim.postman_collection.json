@@ -456,12 +456,12 @@
 	"variable": [
 		{
 			"key": "token",
-			"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IkNocmlzdGlhbiIsIm5iZiI6MTY4NTYwNTkwOCwiZXhwIjoxNjg2MjEwNzA4LCJpYXQiOjE2ODU2MDU5MDh9.NGH_UoS_cplqEgin_uS3zUJGBg0XucR33zt2tdjNp44",
+			"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6InN0cmluZyIsIm5iZiI6MTcyMDAwNTk1MCwiZXhwIjoxNzIwNjEwNzUwLCJpYXQiOjE3MjAwMDU5NTB9.oDxSKhsOIsLDOjv2-Rd9FamkK-OYGd1uXVwtC3JxS6I",
 			"type": "string"
 		},
 		{
 			"key": "baseUrl",
-			"value": "https://localhost:7115",
+			"value": "https://localhost:1222",
 			"type": "string"
 		}
 	]
