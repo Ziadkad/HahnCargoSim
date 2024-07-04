@@ -2,6 +2,6 @@
 
 public interface ISimService
 {
-    void Start();
-    void Stop();
+    Task Start();
+    Task Stop();
 }

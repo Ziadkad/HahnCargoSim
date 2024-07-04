@@ -4,12 +4,12 @@ namespace Backend.Services;
 
 public class SimService : ISimService
 {
-    public void Start()
+    public async Task Start()
     {
         throw new NotImplementedException();
     }
 
-    public void Stop()
+    public async Task Stop()
     {
         throw new NotImplementedException();
     }

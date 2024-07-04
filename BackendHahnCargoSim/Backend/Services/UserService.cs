@@ -1,16 +1,50 @@
-﻿using Backend.Model;
+﻿using System.Text;
+using System.Text.Json.Serialization;
+using Backend.Model;
 using Backend.Services.Interfaces;
+using Newtonsoft.Json;
 
 namespace Backend.Services;
 
 public class UserService : IUserService
 {
-    public UserToken Login(UserAuthenticate userAuthenticate)
+    private readonly IConfiguration _configuration;
+
+    public UserService(IConfiguration configuration)
     {
-        throw new NotImplementedException();
+        _configuration = configuration;
     }
 
-    public int CoinAmount()
+    public async Task<UserToken> Login(UserAuthenticate userAuthenticate)
+    {
+        using (var httpClient = new HttpClient())
+        {
+            var json = JsonConvert.SerializeObject(userAuthenticate);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var response = await httpClient.PostAsync(_configuration.GetValue<string>("HahnCarGoSim:EndPoint")+"/User/Login", content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var responseContent = await response.Content.ReadAsStringAsync();
+                var loginResponse = JsonConvert.DeserializeObject<UserToken>(responseContent);
+                return loginResponse;
+            }
+            else if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+            {
+                var errorContent = await response.Content.ReadAsStringAsync();
+                var error = JsonConvert.DeserializeObject<BadRequest>(errorContent);
+                throw new HttpRequestException($"Bad Request: {error.Message}");
+            }
+            else
+            {
+                response.EnsureSuccessStatusCode();
+                return null; // This line will never be reached, but is necessary to satisfy the return type.
+            }
+        }
+    }
+
+    public async Task<int> CoinAmount()
     {
         throw new NotImplementedException();
     }

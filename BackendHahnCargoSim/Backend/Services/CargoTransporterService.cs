@@ -5,17 +5,17 @@ namespace Backend.Services;
 
 public class CargoTransporterService : ICargoTransporterService
 {
-    public int Buy(int positionNodeId)
+    public async Task<int> Buy(int positionNodeId)
     {
         throw new NotImplementedException();
     }
 
-    public CargoTransporter Get(int transporterId)
+    public async Task<CargoTransporter> Get(int transporterId)
     {
         throw new NotImplementedException();
     }
 
-    public void Move(int transporterId, int targetNodeId)
+    public async Task Move(int transporterId, int targetNodeId)
     {
         throw new NotImplementedException();
     }

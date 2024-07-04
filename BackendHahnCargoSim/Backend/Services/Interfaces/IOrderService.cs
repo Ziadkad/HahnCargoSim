@@ -4,10 +4,10 @@ namespace Backend.Services.Interfaces;
 
 public interface IOrderService
 {
-    List<Order> GetAllAvailable();
-    List<Order> GetAllAccepted();
-    void Accept(int orderId);
-    void Create();
-    void GenerateFile(int maxTicks, string filename);
+    Task<List<Order>> GetAllAvailable();
+    Task<List<Order>> GetAllAccepted();
+    Task Accept(int orderId);
+    Task Create();
+    Task GenerateFile(int maxTicks, string filename);
 
 }

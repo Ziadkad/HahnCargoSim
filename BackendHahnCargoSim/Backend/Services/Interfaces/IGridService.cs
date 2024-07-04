@@ -2,6 +2,6 @@
 
 public interface IGridService
 {
-    string Get();
-    void GenerateFile(int numberOfNodes, int numberOfEdges, int numberOfConnectionsPerNode, string filename);
+    Task<string> Get();
+    Task GenerateFile(int numberOfNodes, int numberOfEdges, int numberOfConnectionsPerNode, string filename);
 }

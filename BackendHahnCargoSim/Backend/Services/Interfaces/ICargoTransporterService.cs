@@ -4,7 +4,7 @@ namespace Backend.Services.Interfaces;
 
 public interface ICargoTransporterService
 {
-    int Buy(int positionNodeId);
-    CargoTransporter Get(int transporterId);
-    void Move(int transporterId, int targetNodeId);
+    Task<int> Buy(int positionNodeId);
+    Task<CargoTransporter> Get(int transporterId);
+    Task Move(int transporterId, int targetNodeId);
 }
