@@ -2,6 +2,6 @@
 
 public interface ISimService
 {
-    Task Start();
-    Task Stop();
+    Task Start(string token);
+    Task Stop(string token);
 }

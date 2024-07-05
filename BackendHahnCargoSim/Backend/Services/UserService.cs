@@ -44,7 +44,7 @@ public class UserService : IUserService
         }
     }
 
-    public async Task<int> CoinAmount()
+    public async Task<int> CoinAmount(string token)
     {
         throw new NotImplementedException();
     }

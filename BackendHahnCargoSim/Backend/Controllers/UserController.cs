@@ -20,9 +20,6 @@ public class UserController : ControllerBase
     
     
     
-    
-    
-    
     [HttpPost("Login")]
     public async Task<IActionResult> Login([FromBody] UserAuthenticate model)
     {
