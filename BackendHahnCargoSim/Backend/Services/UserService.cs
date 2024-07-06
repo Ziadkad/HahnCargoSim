@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Net.Http.Headers;
+using System.Text;
 using System.Text.Json.Serialization;
 using Backend.Model;
 using Backend.Services.Interfaces;
@@ -46,6 +47,27 @@ public class UserService : IUserService
 
     public async Task<int> CoinAmount(string token)
     {
-        throw new NotImplementedException();
+        using (var httpClient = new HttpClient())
+        {           
+            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            var response = await httpClient.GetAsync(_configuration.GetValue<string>("HahnCarGoSim:EndPoint") + "/CoinAmount");
+            if (response.IsSuccessStatusCode)
+            {
+                var responseContent = await response.Content.ReadAsStringAsync();
+                var responseDeserialized = JsonConvert.DeserializeObject<int>(responseContent);
+                return responseDeserialized;
+            }
+            else if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
+            {
+                var errorContent = await response.Content.ReadAsStringAsync();
+                var error = JsonConvert.DeserializeObject<BadRequest>(errorContent);
+                throw new HttpRequestException($"Bad Request: {error.Message}");
+            }
+            else
+            {
+                response.EnsureSuccessStatusCode();
+                return 0; // This line will never be reached, but is necessary to satisfy the return type.
+            } 
+        }
     }
 }
